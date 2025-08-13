@@ -1,0 +1,36 @@
+/* Estilos para el contenedor principal de la página */
+.dashboard-page {
+  /* Habilita el scroll vertical cuando el contenido es más grande que el viewport */
+  overflow-y: auto;
+  
+  /* Asegura que la página ocupe toda la altura disponible */
+  height: 100vh;
+  
+  /* Puedes añadir un poco de padding para que el contenido no se pegue a los bordes */
+  padding: 1rem;
+}
+
+/* Opcional: para que los componentes se vean mejor */
+section,
+app-search-tasks,
+app-calendar-list,
+app-todo-list,
+app-progress-chart {
+  margin-bottom: 1.5rem;
+}
+
+/* Si quieres que los títulos de las secciones se vean como en la imagen,
+  puedes usar estos estilos */
+.tasks-section .section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: white;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+}

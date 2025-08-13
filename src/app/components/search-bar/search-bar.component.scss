@@ -1,0 +1,101 @@
+.search-tasks-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+
+    .search-icon, .mic-icon {
+        color: #888;
+        font-size: 1.2rem;
+    }
+
+    input {
+        flex-grow: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        padding: 0 1rem;
+        font-size: 1rem;
+        &::placeholder {
+            color: #555;
+        }
+    }
+}
+
+.search-results {
+    background: #2a2a2a;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+}
+
+.task-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #333;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .task-info {
+        display: flex;
+        align-items: center;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #555;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        margin-right: 1rem;
+
+        &:checked {
+            background-color: #a000fe;
+            border-color: #a000fe;
+        }
+
+        &:checked::after {
+            content: '\f00c'; // Código de Font Awesome para el ícono de "check"
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 12px;
+        }
+    }
+
+    .task-name {
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        
+        &.completed {
+            text-decoration: line-through;
+            color: #777;
+        }
+    }
+}
+
+.no-results {
+    text-align: center;
+    color: #777;
+    padding: 2rem 1rem;
+}

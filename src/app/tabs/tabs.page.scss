@@ -1,0 +1,19 @@
+ion-tabs {
+  background: #121212;
+}
+
+ion-tab-bar {
+  --background: #1a1a1a;
+  border-top: 1px solid #333333;
+
+  ion-tab-button {
+    --color: #a9a9a9;
+    --color-selected: #a000fe;
+
+    &[aria-label="Logout"] {
+      --color: #ff5252;
+      --color-selected: #ff5252;
+    }
+  }
+}
+
