@@ -22,7 +22,7 @@
         <div class="project-cards-grid">
             <!-- Iteramos sobre los proyectos dinámicos -->
             <!-- El routerLink se activa al hacer clic en la tarjeta para ir a sus tareas -->
-            <div *ngFor="let project of projects" class="project-card" [ngClass]="project.color" [routerLink]="['/projects/project-tasks', project.id]">
+            <div *ngFor="let project of projects" class="project-card" [ngClass]="project.color" [routerLink]="['/projects-tasks', project.id]">
                 <div class="project-card-header">
                     <i class="fas {{ project.icon }} project-icon"></i>
                     <div class="project-actions">

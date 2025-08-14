@@ -1,14 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/projects"></ion-back-button>
+         <ion-back-button defaultHref="/tabs/projects"></ion-back-button>
     </ion-buttons>
     <ion-title>Tareas del Proyecto {{ projectId }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-todo-list-reusable></app-todo-list-reusable>
   <app-todo-list-reusable [projectId]="projectId"></app-todo-list-reusable>
 </ion-content>
 

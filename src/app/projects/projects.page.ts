@@ -14,11 +14,11 @@ import { ProjectService, Project, Task, Tag, Category } from '../services/projec
 })
 export class ProjectsPageComponent implements OnInit {
     private fb = inject(FormBuilder);
+    private router = inject(Router); // Inyecta el servicio Router
 
     projects: Project[] = [];
     newProjectForm: FormGroup;
-    
-    // Lista de colores e íconos para los nuevos proyectos
+
     private projectIcons = ['folder-outline', 'calendar-outline', 'bar-chart-outline', 'cube-outline'];
     private projectColors = ['blue', 'green', 'yellow', 'purple'];
 
@@ -39,24 +39,15 @@ export class ProjectsPageComponent implements OnInit {
       }
     }
 
-    /**
-     * Carga los proyectos desde localStorage.
-     */
     loadProjects(): void {
         const storedProjects = localStorage.getItem('projects');
         this.projects = storedProjects ? JSON.parse(storedProjects) : [];
     }
 
-    /**
-     * Guarda la lista actual de proyectos en localStorage.
-     */
     private saveProjects(): void {
         localStorage.setItem('projects', JSON.stringify(this.projects));
     }
 
-    /**
-     * Agrega un nuevo proyecto a la lista y lo guarda.
-     */
     addNewProject(): void {
         if (this.newProjectForm.valid) {
             const projectName = this.newProjectForm.value.projectName;
@@ -80,20 +71,15 @@ export class ProjectsPageComponent implements OnInit {
         }
     }
 
-    /**
-     * Elimina un proyecto y lo guarda.
-     */
     deleteProject(event: Event, projectId: number): void {
         event.stopPropagation();
+        // Cambia la confirmación a una de Ionic si estás usando Ionic
         if (confirm('¿Estás seguro de que quieres eliminar este proyecto y todas sus tareas?')) {
             this.projects = this.projects.filter(p => p.id !== projectId);
             this.saveProjects();
         }
     }
 
-    /**
-     * Edita un proyecto y lo guarda.
-     */
     editProject(event: Event, project: Project): void {
         event.stopPropagation();
         const newName = prompt("Edita el nombre del proyecto:", project.name);
@@ -105,5 +91,13 @@ export class ProjectsPageComponent implements OnInit {
                 this.saveProjects();
             }
         }
+    }
+
+    /**
+     * Navega a la página de tareas de un proyecto específico.
+     * @param projectId El ID del proyecto.
+     */
+    goToProjectTasks(projectId: number): void {
+        this.router.navigate(['/projects-tasks', projectId]);
     }
 }

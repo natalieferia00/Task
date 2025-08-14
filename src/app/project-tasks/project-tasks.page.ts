@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TodoListReusableComponent } from '../components/todo-list-reusable/todo-list-reusable.component';
+import { TabsComponent } from "../tabs/tabs.page";
 
 @Component({
   selector: 'app-project-tasks',
@@ -10,8 +11,9 @@ import { TodoListReusableComponent } from '../components/todo-list-reusable/todo
   imports: [
     CommonModule,
     IonicModule,
-    TodoListReusableComponent
-  ],
+    TodoListReusableComponent,
+    TabsComponent
+],
   templateUrl: './project-tasks.page.html',
   styleUrls: ['./project-tasks.page.scss']
 })
