@@ -1,18 +1,22 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
-import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { triangle, ellipse, square } from 'ionicons/icons';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Asegúrate de importar CommonModule
+import { AuthService } from '../services/auth';
+import { IonTabs, IonTabButton, IonTabBar, IonRouterOutlet, IonIcon, IonLabel } from "@ionic/angular/standalone";
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+    selector: 'app-tabs',
+    standalone: true,
+    imports: [IonLabel, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, RouterLink, RouterLinkActive, CommonModule, RouterOutlet],
+    templateUrl: './tabs.page.html',
+    styleUrl: './tabs.page.scss'
 })
-export class TabsPage {
-  public environmentInjector = inject(EnvironmentInjector);
+export class TabsComponent {
+    // Inyectamos el servicio de autenticación
+    private authService = inject(AuthService);
 
-  constructor() {
-    addIcons({ triangle, ellipse, square });
-  }
+    // Método que llama al servicio para cerrar la sesión
+    logout() {
+        this.authService.logout();
+    }
 }

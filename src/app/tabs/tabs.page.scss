@@ -1,19 +1,109 @@
 ion-tabs {
   background: #121212;
+    position: fixed;
+      border-top: 1px solid #333333;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Sombra para darle elevación */
+  z-index: 1000;
+}
+
+
+.tab-items-wrapper {
+  display: flex;
+  justify-content: space-around; /* Distribuye los elementos uniformemente */
+  align-items: center;
+  height: 60px;
+  max-width: 600px; /* Limita el ancho en pantallas grandes */
+  margin: 0 auto;
+}
+
+
+/* Estilos para cada ítem de la pestaña (enlace) */
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #a9a9a9; /* Color de texto e ícono por defecto */
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex: 1; /* Permite que cada ítem ocupe el mismo espacio */
+  padding: 5px;
+  transition: color 0.3s ease; /* Transición suave para el color */
+  cursor: pointer;
+}
+/* Estilos para el ícono */
+.tab-icon {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+}
+
+/* Estilos para el texto */
+.tab-label {
+  display: block;
+}
+
+/* Estado activo de la pestaña */
+.tab-item.active {
+  color: #a000fe; /* Color de la pestaña activa */
+}
+
+.tab-item.active .tab-icon {
+  transform: translateY(-2px); /* Pequeño efecto de elevación en el ícono */
+}
+.logout-item.active,
+.logout-item:hover {
+  color: #ff5252; /* Mantiene el color al pasar el cursor o estar activo */
+}
+
+/* Efectos al pasar el cursor (útil en escritorio) */
+.tab-item:not(.active):hover {
+  color: #d1d1d1;
+}
+
+.tab-item:not(.active):hover .tab-icon {
+  transform: scale(1.1);
+}
+/* Estilos específicos para el botón de cerrar sesión */
+.logout-item {
+  color: #ff5252; /* Color de advertencia para cerrar sesión */
+}
+/* Media query para pantallas más grandes (tablet, desktop) */
+@media (min-width: 768px) {
+  .tabs-container {
+    /* En pantallas grandes, las pestañas pueden tener un ancho fijo */
+    width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px 15px 0 0; /* Bordes redondeados en la parte superior */
+  }
+
+  .tab-item {
+    font-size: 0.8rem;
+    height: 70px;
+  }
+  
+  .tab-icon {
+    font-size: 1.5rem;
+  }
 }
 
 ion-tab-bar {
   --background: #1a1a1a;
   border-top: 1px solid #333333;
+  padding-bottom: env(safe-area-inset-bottom); // Importante para dispositivos con "notch"
 
   ion-tab-button {
     --color: #a9a9a9;
     --color-selected: #a000fe;
-
-    &[aria-label="Logout"] {
+    
+    // Estilo para el botón de cerrar sesión
+    &.logout-button {
       --color: #ff5252;
       --color-selected: #ff5252;
     }
   }
 }
-

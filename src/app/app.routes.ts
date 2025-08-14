@@ -1,46 +1,56 @@
-import { Routes } from '@angular/router';
+import { Routes, CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
 
-import { TabsPage } from './tabs/tabs.page';
+// Importamos todos los componentes
 import { HomePage } from './home/home.page';
-import { HabitsPage } from './habits/habits.page';
-import { ProjectsPage } from './projects/projects.page';
+import { HabitsComponent } from './habits/habits.page';
+import { TabsComponent} from './tabs/tabs.page'; // Corregido: TabsPage en lugar de TabsComponent
+import { LoginComponent } from './login/login.page';
+import { RegisterComponent } from './register/register.page';
+import { ProjectsPageComponent } from './projects/projects.page';
+import { ProjectDetailPage } from './project-detail/project-detail.page';
 
-// Rutas de la aplicación
+
+
+// Importamos el servicio de autenticación
+import { AuthService } from './services/auth';
+
+export const authGuard: CanActivateFn = () => {
+    const authService = inject(AuthService);
+    const router = inject(Router);
+
+    if (authService.isLoggedIn()) {
+        return true;
+    } else {
+        router.navigate(['/login']);
+        return false;
+    }
+};
+
 export const routes: Routes = [
-  // Ruta por defecto que redirige a la página de inicio con pestañas
-  {
-    path: '',
-    redirectTo: 'tabs/home',
-    pathMatch: 'full',
-  },
-  // La ruta 'tabs' es el componente principal con la navegación
-  {
-    path: 'tabs',
-    component: TabsPage,
-    children: [
-      {
-        path: 'home',
-        component: HomePage,
-      },
-      {
-        path: 'habits',
-        component: HabitsPage,
-      },
-      {
-        path: 'projects',
-        component: ProjectsPage,
-      },
-      // Redirige a 'home' si el usuario navega a '/tabs' sin una ruta específica
-      {
+    // Rutas de autenticación
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+
+    // Rutas de la aplicación principal, protegidas por el `authGuard`
+    {
         path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      },
-    ],
-  },
-  // Redirección para cualquier otra ruta no encontrada
-  {
-    path: '**',
-    redirectTo: 'tabs/home',
-  },
+        component: TabsComponent,
+        canActivate: [authGuard],
+        children: [
+            // Redirección por defecto a 'home'
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: HomePage },
+            { path: 'habits', component: HabitsComponent },
+            { path: 'projects', component: ProjectsPageComponent },
+        ]
+    },
+    {
+        path: 'project-detail',
+        component: ProjectDetailPage,
+        canActivate: [authGuard]
+    },
+
+    // Comodín para rutas no encontradas, redirige al login
+    { path: '**', redirectTo: 'login' }
 ];

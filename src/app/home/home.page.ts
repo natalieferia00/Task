@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { RouterLink, RouterModule } from '@angular/router';
 
 import { DashboardHeaderComponent } from "../home/dashboard-header/dashboard-header.component";
-import { TabsPage } from "../tabs/tabs.page";
+import { TabsComponent } from "../tabs/tabs.page";
 import { TodoListComponent } from "../home/todo-list/todo-list.component";
 import { AuthService } from '../services/auth';
 import { ProjectService } from '../services/project';
@@ -12,6 +12,8 @@ import { SearchTasksComponent } from "../home/search-tasks/search-tasks.componen
 import { ProgressChartComponent } from "../home/progress-chart/progress-chart.component";
 import { CalendarListComponent } from "../home/calendar-list/calendar-list.component";
 import { IonHeader, IonToolbar, IonTitle, IonContent } from "@ionic/angular/standalone";
+import { SidebarComponent } from "../components/sidebar/sidebar.component";
+import { IonicModule } from "@ionic/angular";
 
 
 @Component({
@@ -25,7 +27,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from "@ionic/angular/stan
     SearchTasksComponent,
     ProgressChartComponent,
     CalendarListComponent,
-    RouterModule, ],
+    RouterModule, TabsComponent, SidebarComponent, IonicModule],
     templateUrl: './home.page.html',
     styleUrl: './home.page.scss'
 })

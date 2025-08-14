@@ -1,0 +1,63 @@
+// Estilos para el menú lateral
+ion-menu {
+  // Ancho del menú
+  --width: 280px;
+
+  // Sombra suave para un efecto de elevación
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+// Encabezado del menú
+ion-header {
+  ion-toolbar {
+    --background: var(--ion-color-primary); // Color de fondo del encabezado
+    --color: #ffffff; // Color del texto del encabezado
+  }
+}
+
+// Contenido y pie de página del menú
+ion-content, ion-footer {
+  --background: var(--ion-background-color); // Fondo del menú, se adapta al tema
+}
+
+// Estilos para la lista de ítems de navegación
+ion-list {
+  padding: 0;
+  ion-item {
+    --background: transparent;
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+    color: var(--ion-color-step-600); // Color del texto por defecto
+    font-weight: 500;
+    border-bottom: 1px solid var(--ion-color-step-150); // Separador sutil
+    
+    // Iconos de la lista
+    ion-icon {
+      font-size: 24px;
+      margin-right: 16px;
+      color: var(--ion-color-medium); // Color de los íconos
+    }
+    
+    // Estado activo o seleccionado
+    &.activated {
+      --background: rgba(var(--ion-color-primary-rgb), 0.1);
+      color: var(--ion-color-primary);
+      ion-icon {
+        color: var(--ion-color-primary);
+      }
+    }
+    
+    // Estado al pasar el mouse (para desktop)
+    &:hover {
+      --background: rgba(var(--ion-color-primary-rgb), 0.05);
+      cursor: pointer;
+    }
+  }
+}
+
+// Ocultar el pie de página en pantallas pequeñas
+ion-footer {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

@@ -1,7 +1,7 @@
-// todo-list-reusable.ts
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { IonContent } from "@ionic/angular/standalone";
 
 // Interfaces para las estructuras de datos
 export interface Tag {
@@ -21,13 +21,13 @@ export interface Task {
 }
 
 @Component({
-  selector: 'app-todo-list',
+  selector: 'app-todo-list-reusable',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [IonContent, CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './todo-list-reusable.component.html',
   styleUrl: './todo-list-reusable.component.scss'
 })
-export class TodoListComponent implements OnInit {
+export class TodoListReusableComponent implements OnInit {
 
   @Input() projectId: number | undefined;
 

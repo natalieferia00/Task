@@ -1,206 +1,219 @@
 import { Injectable } from '@angular/core';
 
-// Definición de interfaces para los modelos de datos
-interface Task {
-    id: number;
-    text: string;
-    completed: boolean;
+// Interfaz Tag añadida
+export interface Tag {
+  name: string;
+  color: string;
 }
 
-interface Project {
-    id: number;
-    name: string;
-    taskCount: number;
-    icon: string; // Icono para la tarjeta del proyecto
-    chartIcon: string; // Icono de gráfico para la tarjeta
-    members: string[]; // URLs de las imágenes de los miembros
-    extraMembers: number;
-    color: string; // Clase de color para la tarjeta
-    tasks: Task[]; // Tareas específicas de este proyecto
+export interface Task {
+  id: number;
+  text: string;
+  date?: string;
+  startTime?: string;
+  endTime?: string;
+  category?: string;
+  completed: boolean;
+  tags?: Tag[];
+}
+
+// Interfaz `Project` actualizada con todas las propiedades necesarias
+export interface Project {
+  id: number;
+  name: string;
+  taskCount: number;
+  icon: string;
+  chartIcon: string;
+  members: string[];
+  extraMembers: number;
+  color: string;
+  tasks: Task[];
+  categories: string[];
+  categoryColors: { [key: string]: string };
+  tags: Tag[];
 }
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class ProjectService {
-    private projects: Project[] = [];
-    private nextProjectId = 1;
-    private nextTaskId = 1; // Para las tareas dentro de cada proyecto
+  private projects: Project[] = [];
 
-    constructor() {
-        this.loadProjects();
-    }
+  constructor() {
+    this.loadProjects();
+  }
 
-    // Cargar proyectos desde localStorage
-    private loadProjects(): void {
-        const storedProjects = localStorage.getItem('projects');
-        if (storedProjects) {
-            try {
-                const parsedProjects = JSON.parse(storedProjects);
-                if (Array.isArray(parsedProjects)) {
-                    this.projects = parsedProjects;
+  // Método implementado para añadir un nuevo proyecto
+  addProject(projectName: string): void {
+    const newProjectId = this.projects.length > 0 ? Math.max(...this.projects.map(p => p.id)) + 1 : 1;
+    const newProject: Project = {
+      id: newProjectId,
+      name: projectName,
+      taskCount: 0,
+      icon: 'folder-outline', // Ícono por defecto
+      chartIcon: 'bar-chart-sharp', // Ícono por defecto
+      members: [],
+      extraMembers: 0,
+      color: '#6200ea', // Color por defecto
+      tasks: [],
+      categories: ['Work'],
+      categoryColors: { 'Work': '#6200ea' },
+      tags: [],
+    };
+    this.projects.push(newProject);
+    this.saveProjects();
+  }
 
-                    // Asegurarse de que los IDs continúen correctamente
-                    if (this.projects.length > 0) {
-                      const maxProjectId = this.projects.reduce((max, p) => Math.max(max, p.id), 0);
-                      this.nextProjectId = maxProjectId + 1;
+  // Método implementado para eliminar un proyecto
+  deleteProject(projectId: number): void {
+    this.projects = this.projects.filter(project => project.id !== projectId);
+    this.saveProjects();
+  }
 
-                      // También inicializar nextTaskId para cada proyecto
-                      this.projects.forEach(project => {
-                          if (project.tasks && project.tasks.length > 0) {
-                              const maxTaskId = project.tasks.reduce((max, t) => Math.max(max, t.id), 0);
-                              if (maxTaskId >= this.nextTaskId) {
-                                  this.nextTaskId = maxTaskId + 1;
-                              }
-                          }
-                      });
-                    }
-                } else {
-                    this.initializeDefaultProjects();
-                }
-            } catch (e) {
-                console.error('Error parsing projects from localStorage', e);
-                this.initializeDefaultProjects();
-            }
-        } else {
-            // Si no hay proyectos, inicializar con algunos de ejemplo
-            this.initializeDefaultProjects();
+  private loadProjects(): void {
+    const savedProjects = localStorage.getItem('projects');
+    if (savedProjects) {
+      this.projects = JSON.parse(savedProjects);
+    } else {
+      // Proyectos de ejemplo con todos los campos para coincidir con la interfaz
+      this.projects = [
+        {
+          id: 1,
+          name: 'Proyecto de Marketing',
+          taskCount: 2, // Se actualiza la cantidad de tareas
+          icon: 'megaphone',
+          chartIcon: 'pulse-sharp',
+          members: ['https://placehold.co/100x100/A05151/FFFFFF?text=A'],
+          extraMembers: 2,
+          color: '#6200ea',
+          tasks: [
+            { id: 101, text: 'Planificar campaña en redes sociales', completed: false, category: 'Work', tags: [{ name: 'Urgente', color: '#f44336' }] },
+            { id: 102, text: 'Crear contenido visual', completed: true, category: 'Work', tags: [] }
+          ],
+          categories: ['Work', 'Personal'],
+          categoryColors: { 'Work': '#6200ea', 'Personal': '#03dac6' },
+          tags: [{ name: 'Urgente', color: '#f44336' }, { name: 'Revisión', color: '#ffc107' }]
+        },
+        {
+          id: 2,
+          name: 'Proyecto Personal',
+          taskCount: 2, // Se actualiza la cantidad de tareas
+          icon: 'walk',
+          chartIcon: 'bar-chart-sharp',
+          members: ['https://placehold.co/100x100/F58632/FFFFFF?text=B', 'https://placehold.co/100x100/6200EA/FFFFFF?text=C'],
+          extraMembers: 0,
+          color: '#03dac6',
+          tasks: [
+            { id: 201, text: 'Comprar víveres', completed: false, category: 'Shopping', tags: [{ name: 'Compras', color: '#e91e63' }] },
+            { id: 202, text: 'Leer el libro de programación', completed: false, category: 'Study', tags: [] }
+          ],
+          categories: ['Study', 'Shopping'],
+          categoryColors: { 'Study': '#ffc107', 'Shopping': '#e91e63' },
+          tags: [{ name: 'Compras', color: '#e91e63' }, { name: 'Libros', color: '#2196f3' }]
         }
+      ];
+      this.saveProjects();
     }
+  }
 
-    private initializeDefaultProjects(): void {
-        this.projects = [
-            {
-                id: this.nextProjectId++,
-                name: 'App Design',
-                taskCount: 24,
-                icon: 'fa-solid fa-mobile-alt',
-                chartIcon: 'fa-solid fa-chart-bar',
-                members: [
-                    'https://placehold.co/40x40/5A8BFD/FFFFFF?text=J',
-                    'https://placehold.co/40x40/7C63C4/FFFFFF?text=M',
-                    'https://placehold.co/40x40/F5826A/FFFFFF?text=A'
-                ],
-                extraMembers: 2,
-                color: 'app-design-card',
-                tasks: [
-                    { id: 1, text: 'Diseñar interfaz de usuario', completed: false },
-                    { id: 2, text: 'Crear prototipo interactivo', completed: true }
-                ]
-            },
-            {
-                id: this.nextProjectId++,
-                name: 'Dashboard',
-                taskCount: 36,
-                icon: 'fa-solid fa-chart-line',
-                chartIcon: 'fa-solid fa-chart-pie',
-                members: [
-                    'https://placehold.co/40x40/5A8BFD/FFFFFF?text=J',
-                    'https://placehold.co/40x40/7C63C4/FFFFFF?text=M',
-                    'https://placehold.co/40x40/F5826A/FFFFFF?text=A'
-                ],
-                extraMembers: 2,
-                color: 'dashboard-card',
-                tasks: [
-                    { id: 1, text: 'Implementar gráficos de ventas', completed: false },
-                    { id: 2, text: 'Conectar a la API de datos', completed: false }
-                ]
-            }
-        ];
-        this.saveProjects();
+  private saveProjects(): void {
+    localStorage.setItem('projects', JSON.stringify(this.projects));
+  }
+
+  getProjects(): Project[] {
+    return this.projects;
+  }
+
+  getProjectById(id: number): Project | undefined {
+    return this.projects.find(p => p.id === id);
+  }
+
+  updateProject(updatedProject: Project): void {
+    const index = this.projects.findIndex(p => p.id === updatedProject.id);
+    if (index !== -1) {
+      this.projects[index] = updatedProject;
+      this.saveProjects();
     }
+  }
 
-    // Guardar proyectos en localStorage
-    private saveProjects(): void {
-        localStorage.setItem('projects', JSON.stringify(this.projects));
+  addTaskToProject(projectId: number, taskData: Omit<Task, 'id' | 'completed'>): void {
+    const project = this.getProjectById(projectId);
+    if (project) {
+      const newId = Date.now();
+      const newTask = { ...taskData, id: newId, completed: false };
+      project.tasks.push(newTask);
+      project.taskCount = project.tasks.length; // Se actualiza la cuenta de tareas
+      this.updateProject(project);
     }
+  }
 
-    // Obtener todos los proyectos
-    getProjects(): Project[] {
-        return this.projects;
+  toggleTaskCompletion(projectId: number, taskId: number): void {
+    const project = this.getProjectById(projectId);
+    if (project) {
+      const task = project.tasks.find(t => t.id === taskId);
+      if (task) {
+        task.completed = !task.completed;
+        this.updateProject(project);
+      }
     }
+  }
 
-    // Obtener un proyecto por su ID
-    getProjectById(id: number): Project | undefined {
-        return this.projects.find(p => p.id === id);
+  updateProjectTask(projectId: number, updatedTask: Task): void {
+    const project = this.getProjectById(projectId);
+    if (project) {
+      const index = project.tasks.findIndex(t => t.id === updatedTask.id);
+      if (index !== -1) {
+        project.tasks[index] = updatedTask;
+        this.updateProject(project);
+      }
     }
+  }
 
-    // Agregar un nuevo proyecto
-    addProject(name: string): Project {
-        const newProject: Project = {
-            id: this.nextProjectId++,
-            name: name,
-            taskCount: 0, // Inicialmente 0 tareas
-            icon: 'fa-solid fa-folder', // Icono por defecto para nuevos proyectos
-            chartIcon: 'fa-solid fa-chart-simple',
-            members: [],
-            extraMembers: 0,
-            color: 'default-card', // Clase de color por defecto
-            tasks: []
-        };
-        this.projects.push(newProject);
-        this.saveProjects();
-        return newProject;
+  deleteProjectTask(projectId: number, taskId: number): void {
+    const project = this.getProjectById(projectId);
+    if (project) {
+      project.tasks = project.tasks.filter(task => task.id !== taskId);
+      project.taskCount = project.tasks.length; // Se actualiza la cuenta de tareas
+      this.updateProject(project);
     }
+  }
 
-    // Actualizar un proyecto
-    updateProject(updatedProject: Project): void {
-        const index = this.projects.findIndex(p => p.id === updatedProject.id);
-        if (index !== -1) {
-            this.projects[index] = updatedProject;
-            this.saveProjects();
+  addCategoryToProject(projectId: number, newCategory: { name: string; color: string }): void {
+    const project = this.getProjectById(projectId);
+    if (project && !project.categories.includes(newCategory.name)) {
+      project.categories.push(newCategory.name);
+      project.categoryColors[newCategory.name] = newCategory.color;
+      this.updateProject(project);
+    }
+  }
+
+  deleteCategoryFromProject(projectId: number, categoryName: string): void {
+    const project = this.getProjectById(projectId);
+    if (project) {
+      project.categories = project.categories.filter(cat => cat !== categoryName);
+      delete project.categoryColors[categoryName];
+      this.updateProject(project);
+    }
+  }
+
+  addTagToProject(projectId: number, newTag: Tag): void {
+    const project = this.getProjectById(projectId);
+    if (project && !project.tags.some(tag => tag.name === newTag.name)) {
+      project.tags.push(newTag);
+      this.updateProject(project);
+    }
+  }
+
+  deleteTagFromProject(projectId: number, tagName: string): void {
+    const project = this.getProjectById(projectId);
+    if (project) {
+      project.tags = project.tags.filter(tag => tag.name !== tagName);
+      project.tasks.forEach(task => {
+        if (task.tags) {
+          task.tags = task.tags.filter(tag => tag.name !== tagName);
         }
+      });
+      this.updateProject(project);
     }
-
-    // Eliminar un proyecto
-    deleteProject(id: number): void {
-        this.projects = this.projects.filter(p => p.id !== id);
-        this.saveProjects();
-    }
-
-    // Métodos para gestionar tareas dentro de un proyecto
-    addTaskToProject(projectId: number, text: string): void {
-        const project = this.getProjectById(projectId);
-        if (project) {
-            const newTask: Task = {
-                id: this.nextTaskId++,
-                text: text,
-                completed: false
-            };
-            project.tasks.push(newTask);
-            project.taskCount = project.tasks.length; // Actualizar el contador de tareas
-            this.saveProjects();
-        }
-    }
-
-    toggleTaskCompletion(projectId: number, taskId: number): void {
-        const project = this.getProjectById(projectId);
-        if (project) {
-            const task = project.tasks.find(t => t.id === taskId);
-            if (task) {
-                task.completed = !task.completed;
-                this.saveProjects();
-            }
-        }
-    }
-
-    updateProjectTask(projectId: number, updatedTask: Task): void {
-        const project = this.getProjectById(projectId);
-        if (project) {
-            const index = project.tasks.findIndex(t => t.id === updatedTask.id);
-            if (index !== -1) {
-                project.tasks[index] = updatedTask;
-                this.saveProjects();
-            }
-        }
-    }
-
-    deleteProjectTask(projectId: number, taskId: number): void {
-        const project = this.getProjectById(projectId);
-        if (project) {
-            project.tasks = project.tasks.filter(t => t.id !== taskId);
-            project.taskCount = project.tasks.length; // Actualizar el contador de tareas
-            this.saveProjects();
-        }
-    }
+  }
 }

@@ -1,8 +1,8 @@
-
-
+/* Importación de fuentes y librerías de íconos */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
+/* Estilos globales */
 * {
   margin: 0;
   padding: 0;
@@ -13,10 +13,12 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'Roboto', sans-serif;
+   min-height: 280vh;
   background-color: #000000;
-
+  color: #fff; /* Color de texto por defecto */
 }
 
+/* Estilos para el contenedor principal del dashboard */
 .dashboard-page {
   display: flex;
   flex-direction: column;
@@ -26,9 +28,9 @@ html, body {
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  color: #fff;
 }
 
+/* Encabezado del dashboard */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -79,6 +81,7 @@ html, body {
   }
 }
 
+/* Barra de búsqueda */
 .search-bar {
   display: flex;
   align-items: center;
@@ -99,6 +102,7 @@ html, body {
     background: transparent;
     font-size: 1rem;
     outline: none;
+    color: inherit; /* Hereda el color del texto del contenedor */
 
     &::placeholder {
       color: #aaa;
@@ -106,6 +110,7 @@ html, body {
   }
 }
 
+/* Título de las secciones */
 .section-title {
   display: flex;
   align-items: center;
@@ -130,6 +135,7 @@ html, body {
   }
 }
 
+/* Sección para añadir proyectos */
 .add-project-section {
   margin-bottom: 1.5rem;
 
@@ -145,6 +151,8 @@ html, body {
       border-radius: 8px;
       font-size: 1rem;
       outline: none;
+      background-color: #333; /* Fondo oscuro */
+      color: #fff; /* Color de texto blanco */
     }
 
     .add-project-button {
@@ -170,16 +178,19 @@ html, body {
   }
 }
 
+/* Tarjetas de proyectos */
 .project-cards-wrapper {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   padding-bottom: 1rem;
 
+  /* Oculta la barra de scroll en navegadores WebKit */
   &::-webkit-scrollbar {
     display: none;
   }
 
+  /* Oculta la barra de scroll en IE y Firefox */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -197,6 +208,8 @@ html, body {
   transition: transform 0.3s ease;
   cursor: pointer;
   position: relative;
+  background-color: #333; /* Fondo por defecto */
+  color: #fff; /* Color de texto por defecto */
 
   &:hover {
     transform: translateY(-5px);
@@ -206,7 +219,6 @@ html, body {
   &.dashboard-card,
   &.default-card {
     background-color: #a000fe;
-    color: #fff;
   }
 
   .project-card-header {
@@ -252,6 +264,7 @@ html, body {
   }
 }
 
+/* Sección de tareas */
 .tasks-section {
   display: flex;
   flex-direction: column;
@@ -262,7 +275,150 @@ html, body {
   }
 }
 
-// Breakpoints para tablet y desktop
+/* Contenedor de la lista de tareas */
+.todo-list-container {
+  padding: 1rem;
+  background-color: #1a1a1a; /* Fondo más oscuro para destacar */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+/* Formulario para añadir tareas */
+.task-form {
+  margin-bottom: 1rem;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .task-input,
+  .date-input,
+  .category-select {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #333;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .add-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #a000fe;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:disabled {
+      background-color: #626162;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: #9402e9;
+    }
+  }
+}
+
+/* Lista de tareas */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .empty-list-message {
+    text-align: center;
+    color: #888;
+    padding: 1rem;
+  }
+
+  .task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+
+    &.completed {
+      background-color: #383838; /* Color de fondo para tareas completadas */
+      .task-text {
+        text-decoration: line-through;
+        color: #ffffff;
+      }
+    }
+
+    .task-details {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .color-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+
+      .task-text {
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .task-meta {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.75rem;
+        color: #aaaaaa;
+
+        .task-category {
+          font-style: italic;
+          color: #888888;
+        }
+      }
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 0.25rem;
+
+      .action-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: #ffffff;
+        padding: 0.5rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #a000fe;
+        }
+      }
+
+      .delete-button:hover {
+        color: #e53935;
+      }
+    }
+  }
+}
+
+/* Media queries para responsividad */
 @media (min-width: 500px) {
   .dashboard-page {
     max-width: 800px;
@@ -276,6 +432,14 @@ html, body {
   }
 
   .add-project-section .new-project-form .add-project-button {
+    width: auto;
+  }
+
+  .task-form .form-group {
+    flex-direction: row;
+  }
+
+  .task-form .add-button {
     width: auto;
   }
 }
@@ -304,162 +468,3 @@ html, body {
     gap: 1rem;
   }
 }
-.todo-list-container {
-  padding: 1rem;
-  background-color: #000000;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-
-  @media (min-width: 500px) {
-    max-width: 500px;
-    margin: 2rem auto;
-  }
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  color: #ffffff;
-  font-size: 1.5rem;
-}
-
-.task-form {
-  margin-bottom: 1rem;
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    @media (min-width: 500px) {
-      flex-direction: row;
-    }
-  }
-
-  .task-input,
-  .date-input,
-  .category-select {
-    flex: 1;
-    padding: 0.75rem;
-    border: 1px solid #cccccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-    color: #000000;
-  }
-
-  .add-button {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: #000000;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    @media (min-width: 500px) {
-      width: auto;
-    }
-
-    &:disabled {
-      background-color: #a000fe;
-      cursor: not-allowed;
-    }
-
-    &:hover:not(:disabled) {
-      background-color: #a000fe;
-    }
-  }
-}
-
-.tasks-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  .empty-list-message {
-    text-align: center;
-    color: #ffffff;
-    padding: 1rem;
-  }
-
-  .task-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #000000;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-
-    &.completed {
-      background-color: #a8a8a8;
-
-      .task-text {
-        text-decoration: line-through;
-        color: #ffffff;
-      }
-    }
-
-    .task-details {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-
-      .color-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-      }
-
-      .task-text {
-        font-size: 0.9rem;
-        margin: 0;
-      }
-
-      .task-meta {
-        display: flex;
-        flex-direction: column;
-        font-size: 0.75rem;
-        color: #ffffff;
-
-       
-        .task-category {
-          font-style: italic;
-          color: #aaaaaa;
-        }
-      }
-    }
-
-    .task-actions {
-      display: flex;
-      gap: 0.25rem;
-
-      .action-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 0.9rem;
-        color: #ffffff;
-        padding: 0.5rem;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: #333333;
-        }
-      }
-
-      .edit-button:hover {
-        color: #000000;
-      }
-
-      .delete-button:hover {
-        color: #e53935;
-      }
-    }
-  }
-}
-
-

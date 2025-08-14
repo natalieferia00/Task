@@ -1,7 +1,10 @@
+<app-sidebar></app-sidebar>
+
 <div class="dashboard-page">
   <app-dashboard-header [user]="currentUser"></app-dashboard-header>
-<app-search-tasks></app-search-tasks>
-<app-calendar-list></app-calendar-list>
+  <app-search-tasks></app-search-tasks>
+  <app-calendar-list></app-calendar-list>
+
   <section class="tasks-section">
     <div class="section-title">
       <h2>Today Tasks</h2>
@@ -11,7 +14,9 @@
       <h2>Month</h2>
     </div>
     <app-todo-list></app-todo-list>
-    
   </section>
+
   <app-progress-chart></app-progress-chart>
 </div>
+
+<app-sidebar></app-sidebar>

@@ -2,7 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TodoListComponent } from '../../components/todo-list-reusable/todo-list-reusable.component';
 
 // Interfaces para las estructuras de datos (copiadas de todo-list-reusable.ts para mantener la consistencia)
 export interface Tag {
