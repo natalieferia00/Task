@@ -1,13 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+// Asegúrate de importar tu componente de login y registro
+import { LoginComponent } from './login/login.page';
+import { RegisterComponent } from './register/register.page';
 import { TabsComponent } from './tabs/tabs.page';
 import { HomePage } from './home/home.page';
 import { HabitsComponent } from './habits/habits.page';
 import { ProjectsPageComponent } from './projects/projects.page';
-import { ProjectTasksPage } from './project-tasks/project-tasks.page'; // Importa la nueva página
+import { ProjectTasksPage } from './project-tasks/project-tasks.page';
 
 export const routes: Routes = [
+  // Rutas de autenticación a nivel superior
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register', // Agrega la ruta para el componente de registro
+    component: RegisterComponent
+  },
   {
     path: '',
     redirectTo: '/tabs/home',
@@ -37,10 +49,12 @@ export const routes: Routes = [
     ]
   },
   {
-    // Ruta para la página de tareas de un proyecto específico
-    // El :id es un parámetro que se pasará a través de la URL
     path: 'projects-tasks/:id',
     component: ProjectTasksPage
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
   }
 ];
 
