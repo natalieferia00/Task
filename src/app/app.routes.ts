@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-// Asegúrate de importar tu componente de login y registro
 import { LoginComponent } from './login/login.page';
 import { RegisterComponent } from './register/register.page';
 import { TabsComponent } from './tabs/tabs.page';
@@ -11,19 +9,18 @@ import { ProjectsPageComponent } from './projects/projects.page';
 import { ProjectTasksPage } from './project-tasks/project-tasks.page';
 
 export const routes: Routes = [
-  // Rutas de autenticación a nivel superior
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
-    path: 'register', // Agrega la ruta para el componente de registro
-    component: RegisterComponent
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: '',
     redirectTo: '/tabs/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'tabs',
@@ -31,35 +28,35 @@ export const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomePage
+        component: HomePage,
       },
       {
         path: 'habits',
-        component: HabitsComponent
+        component: HabitsComponent,
       },
       {
         path: 'projects',
-        component: ProjectsPageComponent
+        component: ProjectsPageComponent,
       },
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: 'projects-tasks/:id',
-    component: ProjectTasksPage
+    component: ProjectTasksPage,
   },
   {
     path: '**',
-    redirectTo: 'login'
-  }
+    redirectTo: 'login',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

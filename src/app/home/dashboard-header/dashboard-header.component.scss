@@ -1,28 +1,29 @@
 .dashboard-header {
     display: flex;
-    justify-content: space-between; /* Distribuye los elementos (saludo, logo, perfil) */
-    align-items: center; /* Centra verticalmente todos los elementos */
-    padding: 1rem 0; /* Padding superior e inferior */
-    width: 100%; /* Asegura que ocupe todo el ancho */
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100%;
 }
 
 .user-greeting {
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex-shrink: 0; /* Evita que se encoja si el espacio es limitado */
+    flex-shrink: 0;
 
     .hamburger-icon {
         font-size: 1.5rem;
         color: #888;
         cursor: pointer;
     }
-    
+
     .greeting-text {
         p.greeting {
             font-weight: 300;
             color: #888;
         }
+
         h1.task-count {
             font-size: 1.5rem;
             font-weight: 500;
@@ -30,17 +31,16 @@
     }
 }
 
-/* Estilos para el contenedor del logo */
 .logo-container {
-    flex-grow: 1; /* Permite que el contenedor del logo ocupe el espacio central */
-    text-align: center; /* Centra la imagen del logo horizontalmente */
+    flex-grow: 1;
+    text-align: center;
 }
 
 .header-logo {
-    width: 150px; /* Tamaño pequeño para el logo */
-    height: auto; /* Mantiene la proporción */
-    display: block; /* Asegura que el margin auto funcione para centrar si no es flex item */
-    margin: 0 auto; /* Centra la imagen dentro de su contenedor */
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .profile-image-wrapper {
@@ -49,7 +49,7 @@
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0; /* Evita que se encoja */
+    flex-shrink: 0;
 
     .profile-image {
         width: 100%;

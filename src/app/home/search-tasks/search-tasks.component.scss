@@ -1,5 +1,5 @@
 :host {
-  display: block; // Esto es crucial para que el componente sea un bloque y ocupe su propio espacio
+  display: block;
 }
 
 .search-tasks-container {
@@ -11,28 +11,28 @@
 .search-bar-wrapper {
   display: flex;
   align-items: center;
-  background: #2a2a2a; // Fondo gris oscuro
+  background: #2a2a2a;
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombra sutil para profundidad
-  border: 1px solid #3c3c3c; // Borde más claro para definir el contorno
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #3c3c3c;
 
   input {
     flex-grow: 1;
     border: none;
     outline: none;
     background: transparent;
-    color: #f1f1f1; // Texto blanco
+    color: #f1f1f1;
     font-size: 1rem;
-    padding-right: 0.5rem; // Espacio entre el texto y el ícono
+    padding-right: 0.5rem;
 
     &::placeholder {
-      color: #a9a9a9; // Color del placeholder
+      color: #a9a9a9;
     }
   }
 
   svg {
-    color: #a9a9a9; // Color del ícono de búsqueda
+    color: #a9a9a9;
     width: 20px;
     height: 20px;
   }
@@ -51,7 +51,7 @@
   align-items: center;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #3c3c3c;
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -71,10 +71,10 @@
 .task-status {
   font-size: 0.8rem;
   font-weight: bold;
-  color: #ffffff; // Color para tareas pendientes
+  color: #ffffff;
 
   &.completed {
-    color: #4caf50; // Color para tareas completadas
+    color: #4caf50;
   }
 }
 

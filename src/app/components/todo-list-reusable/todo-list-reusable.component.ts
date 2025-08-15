@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IonContent } from "@ionic/angular/standalone";
 
-// Interfaces para las estructuras de datos
 export interface Tag {
   name: string;
   color: string;
@@ -31,13 +30,13 @@ export class TodoListReusableComponent implements OnInit {
 
   @Input() projectId: number | undefined;
 
-  // Recibe la lista de tareas del componente padre
+
   @Input() tasks: Task[] = [];
   
-  // Lista de tareas filtradas para mostrar en la UI
+ 
   filteredTasks: Task[] = [];
   
-  // Término de búsqueda
+
   searchTerm: string = '';
 
   @Output() taskAdded = new EventEmitter<Omit<Task, 'id' | 'completed'>>();
@@ -72,23 +71,20 @@ export class TodoListReusableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // 1. Cargar los datos desde el localStorage
+  
     this.loadDataFromLocalStorage();
 
-    // 2. Inicializar la lista de tareas filtradas con todas las tareas
+  
     this.filteredTasks = [...this.tasks];
     
-    // 3. Establecer los valores iniciales en el formulario
+   
     if (this.categories.length > 0) {
       this.taskForm.get('category')?.setValue(this.categories[0]);
     }
     this.taskForm.get('tags')?.setValue(this.taskTags);
   }
 
-  /**
-   * Carga los datos de tareas, categorías y etiquetas desde el localStorage.
-   * Si no hay datos guardados, utiliza valores predeterminados.
-   */
+
   private loadDataFromLocalStorage(): void {
     if (!this.projectId) {
       this.tasks = [];
@@ -104,11 +100,9 @@ export class TodoListReusableComponent implements OnInit {
     const categoryColorsKey = `categoryColors-${this.projectId}`;
     const tagsKey = `tags-${this.projectId}`;
 
-    // Cargar Tareas
     const savedTasks = localStorage.getItem(tasksKey);
     this.tasks = savedTasks ? JSON.parse(savedTasks) : [];
 
-    // Cargar Categorías
     const savedCategories = localStorage.getItem(categoriesKey);
     const savedCategoryColors = localStorage.getItem(categoryColorsKey);
     if (savedCategories && savedCategoryColors) {
@@ -119,7 +113,6 @@ export class TodoListReusableComponent implements OnInit {
       this.categoryColors = { 'Work': '#6200ea', 'Personal': '#03dac6', 'Study': '#ffc107', 'Shopping': '#e91e63' };
     }
 
-    // Cargar Etiquetas
     const savedTags = localStorage.getItem(tagsKey);
     if (savedTags) {
       this.tags = JSON.parse(savedTags);
@@ -134,9 +127,7 @@ export class TodoListReusableComponent implements OnInit {
     this.availableTags = this.tags.map(tag => tag.name);
   }
 
-  /**
-   * Guarda las tareas, categorías y etiquetas en el localStorage.
-   */
+
   private saveDataToLocalStorage(): void {
     if (!this.projectId) return;
 
@@ -151,9 +142,7 @@ export class TodoListReusableComponent implements OnInit {
     localStorage.setItem(tagsKey, JSON.stringify(this.tags));
   }
   
-  /**
-   * Filtra las tareas según el término de búsqueda.
-   */
+
   onSearch(): void {
     if (!this.searchTerm) {
       this.filteredTasks = [...this.tasks];
@@ -177,7 +166,6 @@ export class TodoListReusableComponent implements OnInit {
       this.taskForm.reset({ category: this.categories[0], tags: [] });
       this.taskTags = [];
       
-      // Actualiza la lista filtrada después de añadir una tarea
       this.onSearch();
     }
   }
@@ -189,7 +177,6 @@ export class TodoListReusableComponent implements OnInit {
       this.tasks[index] = updatedTask;
       this.saveDataToLocalStorage();
       this.taskToggled.emit(updatedTask);
-      // Actualiza la lista filtrada después de alternar el estado
       this.onSearch();
     }
   }
@@ -198,7 +185,6 @@ export class TodoListReusableComponent implements OnInit {
     this.tasks = this.tasks.filter(task => task.id !== id);
     this.saveDataToLocalStorage();
     this.taskDeleted.emit(id);
-    // Actualiza la lista filtrada después de eliminar una tarea
     this.onSearch();
   }
 
@@ -211,7 +197,6 @@ export class TodoListReusableComponent implements OnInit {
         this.tasks[index] = updatedTask;
         this.saveDataToLocalStorage();
         this.taskUpdated.emit(updatedTask);
-        // Actualiza la lista filtrada después de editar una tarea
         this.onSearch();
       }
     }

@@ -1,31 +1,29 @@
 <div class="tabs-container">
     <router-outlet></router-outlet>
-    
+
     <div class="tab-items-wrapper">
-        <!-- Navegación para el Dashboard -->
-        <!-- La ruta debe ser '/tabs/home' -->
+
         <a routerLink="/tabs/home" routerLinkActive="active" class="tab-item">
             <i class="fas fa-home tab-icon"></i>
             <span class="tab-label">Home</span>
         </a>
-        
-        <!-- Navegación para los Hábitos -->
-        <!-- La ruta debe ser '/tabs/habits' -->
+
+
         <a routerLink="/tabs/habits" routerLinkActive="active" class="tab-item">
             <i class="fas fa-tasks tab-icon"></i>
             <span class="tab-label">Habits</span>
         </a>
 
-        <!-- Navegación para la Página de Proyectos -->
-        <!-- La ruta debe ser '/tabs/projects' -->
+
+
         <a routerLink="/tabs/projects" routerLinkActive="active" class="tab-item">
             <i class="fas fa-project-diagram tab-icon"></i>
             <span class="tab-label">Projects</span>
         </a>
 
-        <!-- Botón para cerrar sesión -->
+
         <a (click)="logout()" class="tab-item logout-item">
-             <a routerLink="/tabs/login" routerLinkActive="active" class="tab-item"></a>
+            <a routerLink="/tabs/login" routerLinkActive="active" class="tab-item"></a>
             <i class="fas fa-sign-out-alt tab-icon"></i>
             <span class="tab-label">Logout</span>
         </a>

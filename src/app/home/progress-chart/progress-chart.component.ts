@@ -2,10 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
 
-// Registra todos los elementos de Chart.js
 Chart.register(...registerables);
 
-// Interfaz para las tareas y los hábitos en localStorage
 interface Task {
   completed: boolean;
 }
@@ -27,20 +25,19 @@ export class ProgressChartComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // Dibujar las gráficas una vez que la vista se ha inicializado
     this.createTaskChart();
     this.createHabitChart();
-  } // Carga las tareas desde localStorage
+  }
 
   private loadTasks(): Task[] {
     const storedTasks = localStorage.getItem('tasks');
     return storedTasks ? JSON.parse(storedTasks) : [];
-  } // Carga los hábitos desde localStorage
+  }
 
   private loadHabits(): Habit[] {
     const storedHabits = localStorage.getItem('habits');
     return storedHabits ? JSON.parse(storedHabits) : [];
-  } // Crea la gráfica de tareas
+  }
 
   private createTaskChart(): void {
     const tasks = this.loadTasks();
@@ -64,7 +61,7 @@ export class ProgressChartComponent implements OnInit, AfterViewInit {
             data: [completedTasks, incompleteTasks],
             backgroundColor: ['#a000fe', '#3a3a3a'],
             hoverBackgroundColor: ['#c266ff', '#555555'],
-            borderColor: '#1e1e1e', // Establece el color del borde al mismo que el fondo de la tarjeta
+            borderColor: '#1e1e1e',
             borderWidth: 5,
           },
         ],
@@ -103,7 +100,7 @@ export class ProgressChartComponent implements OnInit, AfterViewInit {
         },
       ],
     });
-  } // Crea la gráfica de hábitos
+  }
 
   private createHabitChart(): void {
     const habits = this.loadHabits();
@@ -137,7 +134,7 @@ export class ProgressChartComponent implements OnInit, AfterViewInit {
             data: [completedHabitsDays, incompleteHabitsDays],
             backgroundColor: ['#3a3a3a', '#ffffffff'],
             hoverBackgroundColor: ['#555555', '#ffffffff'],
-            borderColor: '#1e1e1e', // Establece el color del borde al mismo que el fondo de la tarjeta
+            borderColor: '#1e1e1e',
             borderWidth: 5,
           },
         ],

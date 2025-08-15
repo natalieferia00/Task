@@ -1,49 +1,36 @@
-/*
- * Archivo de estilos para la página de tareas de proyectos.
- * Centra el contenido principal y aplica un fondo oscuro para
- * una apariencia más limpia y moderna.
- */
 
-/* Estilos para el ion-header */
 ion-header {
-  --background: #1e1e1e; /* Color de fondo del encabezado */
-  color: #000000; /* Color del texto */
+  --background: #1e1e1e; 
+  color: #000000; 
 }
 
-/* Estilos para el ion-title en el encabezado */
+
 ion-title {
   color: #ffffff;
   font-weight: bold;
   background-color: #000000;
 }
 
-/* Estilos para el ion-content, que contiene el cuerpo de la página */
+
 ion-content {
-  --background: #121212; /* Fondo de pantalla principal en negro oscuro */
-  display: flex; /* Utiliza flexbox para centrar el contenido */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  padding: 20px; /* Añade un poco de espacio alrededor del componente */
+  --background: #121212;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  padding: 20px; 
 }
 
-/* Estilos para el componente de la lista de tareas */
+
 app-todo-list-reusable {
-  /*
-   * El componente en sí mismo necesita ser flexible o tener un ancho definido.
-   * Por defecto, los componentes de Angular son `display: block`.
-   * Para asegurarnos de que se centra correctamente, podríamos envolverlo
-   * en otro div si el `display: flex` en `ion-content` no es suficiente.
-   * Sin embargo, con un `display: flex` en el contenedor, el componente
-   * hijo se centrará automáticamente.
-   */
+
   width: 100%;
-  max-width: 600px; /* Limita el ancho para que se vea bien en pantallas grandes */
+  max-width: 600px; 
 }
 
-/* Estilos para asegurar que el componente todo-list se vea bien */
+
 .todo-list-container {
-  background: #2b2b2b; /* Un gris oscuro para el fondo de la lista de tareas */
-  border-radius: 10px; /* Esquinas redondeadas para un look moderno */
+  background: #2b2b2b; 
+  border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
 }

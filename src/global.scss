@@ -1,24 +1,24 @@
-/* Importación de fuentes y librerías de íconos */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-/* Estilos globales */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   font-family: 'Roboto', sans-serif;
-   min-height: 400vh;
+  min-height: 400vh;
   background-color: #000000;
-  color: #fff; /* Color de texto por defecto */
+  color: #fff;
 }
 
-/* Estilos para el contenedor principal del dashboard */
+
 .dashboard-page {
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Encabezado del dashboard */
+
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -81,7 +81,7 @@ html, body {
   }
 }
 
-/* Barra de búsqueda */
+
 .search-bar {
   display: flex;
   align-items: center;
@@ -91,7 +91,8 @@ html, body {
   gap: 0.5rem;
   color: #fff;
 
-  .search-icon, .mic-icon {
+  .search-icon,
+  .mic-icon {
     color: #ffffff;
     font-size: 1.2rem;
   }
@@ -102,7 +103,7 @@ html, body {
     background: transparent;
     font-size: 1rem;
     outline: none;
-    color: inherit; /* Hereda el color del texto del contenedor */
+    color: inherit;
 
     &::placeholder {
       color: #aaa;
@@ -110,7 +111,7 @@ html, body {
   }
 }
 
-/* Título de las secciones */
+
 .section-title {
   display: flex;
   align-items: center;
@@ -125,7 +126,8 @@ html, body {
     margin: 0;
   }
 
-  .project-options-icon, i.fa-angle-right {
+  .project-options-icon,
+  i.fa-angle-right {
     color: #888;
     font-size: 1rem;
   }
@@ -135,7 +137,7 @@ html, body {
   }
 }
 
-/* Sección para añadir proyectos */
+
 .add-project-section {
   margin-bottom: 1.5rem;
 
@@ -151,8 +153,8 @@ html, body {
       border-radius: 8px;
       font-size: 1rem;
       outline: none;
-      background-color: #333; /* Fondo oscuro */
-      color: #fff; /* Color de texto blanco */
+      background-color: #333;
+      color: #fff;
     }
 
     .add-project-button {
@@ -178,19 +180,18 @@ html, body {
   }
 }
 
-/* Tarjetas de proyectos */
 .project-cards-wrapper {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   padding-bottom: 1rem;
 
-  /* Oculta la barra de scroll en navegadores WebKit */
+
   &::-webkit-scrollbar {
     display: none;
   }
 
-  /* Oculta la barra de scroll en IE y Firefox */
+
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -208,8 +209,8 @@ html, body {
   transition: transform 0.3s ease;
   cursor: pointer;
   position: relative;
-  background-color: #333; /* Fondo por defecto */
-  color: #fff; /* Color de texto por defecto */
+  background-color: #333;
+  color: #fff;
 
   &:hover {
     transform: translateY(-5px);
@@ -275,10 +276,10 @@ html, body {
   }
 }
 
-/* Contenedor de la lista de tareas */
+
 .todo-list-container {
   padding: 1rem;
-  background-color: #1a1a1a; /* Fondo más oscuro para destacar */
+  background-color: #1a1a1a;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -290,7 +291,7 @@ h2 {
   font-size: 1.5rem;
 }
 
-/* Formulario para añadir tareas */
+
 .task-form {
   margin-bottom: 1rem;
 
@@ -335,7 +336,6 @@ h2 {
   }
 }
 
-/* Lista de tareas */
 .tasks-list {
   display: flex;
   flex-direction: column;
@@ -357,7 +357,8 @@ h2 {
     transition: background-color 0.3s ease;
 
     &.completed {
-      background-color: #383838; /* Color de fondo para tareas completadas */
+      background-color: #383838;
+
       .task-text {
         text-decoration: line-through;
         color: #ffffff;
@@ -418,7 +419,6 @@ h2 {
   }
 }
 
-/* Media queries para responsividad */
 @media (min-width: 500px) {
   .dashboard-page {
     max-width: 800px;

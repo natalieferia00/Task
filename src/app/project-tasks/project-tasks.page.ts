@@ -23,7 +23,6 @@ export class ProjectTasksPage implements OnInit {
   projectId?: number;
 
   ngOnInit(): void {
-    // Suscribirse a los cambios de parámetros de la ruta para obtener el ID.
     this.route.paramMap.subscribe(params => {
       this.projectId = Number(params.get('id'));
     });

@@ -1,10 +1,10 @@
 .projects-page-container {
     padding: 1.5rem;
     background-color: #000000;
-  
+
     color: #ffffff;
     box-sizing: border-box;
-    position: relative; 
+    position: relative;
 
     @media (min-width: 768px) {
         max-width: 1024px;
@@ -16,6 +16,7 @@
 .page-header {
     text-align: center;
     margin-bottom: 2rem;
+
     h2 {
         font-size: 1.8rem;
         font-weight: 600;
@@ -23,9 +24,10 @@
     }
 }
 
-/* Estilos para la sección de agregar nuevo proyecto (similar al dashboard) */
+
 .add-project-section {
     margin-bottom: 2rem;
+
     .new-project-form {
         display: flex;
         gap: 0.5rem;
@@ -44,6 +46,7 @@
             border-radius: 8px;
             font-size: 1rem;
             outline: none;
+
             &::placeholder {
                 color: #888;
             }
@@ -69,6 +72,7 @@
                 color: #888;
                 cursor: not-allowed;
             }
+
             &:hover:not(:disabled) {
                 background-color: #c266ff;
             }
@@ -76,7 +80,7 @@
     }
 }
 
-/* Estilos para la cuadrícula de tarjetas de proyectos */
+
 .projects-list-section {
     .empty-list-message {
         text-align: center;
@@ -108,23 +112,34 @@
         cursor: pointer;
         position: relative;
         color: #ffffff;
-        
+
         &:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
         }
-        
-        /* Paleta de colores en tonos morados */
-        &:nth-child(4n + 1) { background-color: #1b1a1b; } /* Morado Oscuro */
-        &:nth-child(4n + 2) { background-color: #a000fe; } /* Morado Clásico */
-        &:nth-child(4n + 3) { background-color: #2d2d33; } /* Lavanda */
-        &:nth-child(4n + 4) { background-color: #070607; } /* Magenta (toque de color) */
+
+
+        &:nth-child(4n + 1) {
+            background-color: #1b1a1b;
+        }
+
+        &:nth-child(4n + 2) {
+            background-color: #a000fe;
+        }
+
+        &:nth-child(4n + 3) {
+            background-color: #2d2d33;
+        }
+
+        &:nth-child(4n + 4) {
+            background-color: #070607;
+        }
 
         .project-card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            
+
             .project-icon {
                 font-size: 1.8rem;
             }
@@ -132,7 +147,7 @@
             .project-actions {
                 display: flex;
                 gap: 0.5rem;
-                
+
                 .action-button {
                     background: none;
                     border: none;
@@ -146,29 +161,40 @@
                         color: white;
                     }
                 }
-                .edit-button:hover { color: #b39ddb; } /* Lavanda para editar */
-                .delete-button:hover { color: #e91e63; } /* Magenta para eliminar */
+
+                .edit-button:hover {
+                    color: #b39ddb;
+                }
+
+                /* Lavanda para editar */
+                .delete-button:hover {
+                    color: #e91e63;
+                }
+
+                /* Magenta para eliminar */
             }
         }
-        
-        .project-details { 
-            margin-top: auto; 
+
+        .project-details {
+            margin-top: auto;
+
             p.project-task-count {
                 font-size: 0.9rem;
                 font-weight: 300;
                 opacity: 0.8;
             }
+
             p.project-name {
                 font-size: 1.2rem;
                 font-weight: 500;
             }
         }
-        
+
         .project-members {
             display: flex;
             align-items: center;
             margin-top: 1rem;
-            
+
             .member-photo {
                 width: 30px;
                 height: 30px;
@@ -176,8 +202,9 @@
                 border: 2px solid #fff;
                 margin-right: -10px;
             }
-            .member-count { 
-                margin-left: 15px; 
+
+            .member-count {
+                margin-left: 15px;
                 font-size: 0.9rem;
             }
         }

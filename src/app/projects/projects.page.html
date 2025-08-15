@@ -1,43 +1,46 @@
-<!-- Contenedor principal de la página de proyectos -->
 <div class="projects-page-container">
     <header class="page-header">
         <h2>Mis Proyectos</h2>
     </header>
 
-    <!-- Formulario para agregar un nuevo proyecto -->
+
     <section class="add-project-section">
         <form [formGroup]="newProjectForm" (ngSubmit)="addNewProject()" class="new-project-form">
-            <input type="text" formControlName="projectName" placeholder="Nombre del nuevo proyecto" class="project-name-input">
+            <input type="text" formControlName="projectName" placeholder="Nombre del nuevo proyecto"
+                class="project-name-input">
             <button type="submit" [disabled]="newProjectForm.invalid" class="add-project-button">
                 <i class="fas fa-plus"></i> Add Project
             </button>
         </form>
     </section>
 
-    <!-- Sección de Proyectos existentes -->
+
     <section class="projects-list-section">
         <div *ngIf="projects.length === 0" class="empty-list-message">
             No tienes proyectos. ¡Crea uno!
         </div>
         <div class="project-cards-grid">
-            <!-- Iteramos sobre los proyectos dinámicos -->
-            <!-- El routerLink se activa al hacer clic en la tarjeta para ir a sus tareas -->
-            <div *ngFor="let project of projects" class="project-card" [ngClass]="project.color" [routerLink]="['/projects-tasks', project.id]">
+
+            <div *ngFor="let project of projects" class="project-card" [ngClass]="project.color"
+                [routerLink]="['/projects-tasks', project.id]">
                 <div class="project-card-header">
                     <i class="fas {{ project.icon }} project-icon"></i>
                     <div class="project-actions">
-                        <!-- Botón de editar proyecto -->
-                        <button class="action-button edit-button" (click)="$event.stopPropagation(); editProject($event, project)">
+
+                        <button class="action-button edit-button"
+                            (click)="$event.stopPropagation(); editProject($event, project)">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <!-- Botón de eliminar proyecto -->
-                        <button class="action-button delete-button" (click)="$event.stopPropagation(); deleteProject($event, project.id)">
+
+                        <button class="action-button delete-button"
+                            (click)="$event.stopPropagation(); deleteProject($event, project.id)">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
                 </div>
                 <div class="project-details">
-                    <p class="project-task-count">{{ project.tasks?.length ?? 0 }} Tarea<ng-container *ngIf="project.tasks?.length !== 1">s</ng-container></p>
+                    <p class="project-task-count">{{ project.tasks?.length ?? 0 }} Tarea<ng-container
+                            *ngIf="project.tasks?.length !== 1">s</ng-container></p>
                     <h3 class="project-name">{{ project.name }}</h3>
                 </div>
             </div>

@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-
-// Interfaz Tag añadida
 export interface Tag {
   name: string;
   color: string;
@@ -17,7 +15,6 @@ export interface Task {
   tags?: Tag[];
 }
 
-// Interfaz `Project` actualizada con todas las propiedades necesarias
 export interface Project {
   id: number;
   name: string;
@@ -34,7 +31,7 @@ export interface Project {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
   private projects: Project[] = [];
@@ -43,30 +40,31 @@ export class ProjectService {
     this.loadProjects();
   }
 
-  // Método implementado para añadir un nuevo proyecto
   addProject(projectName: string): void {
-    const newProjectId = this.projects.length > 0 ? Math.max(...this.projects.map(p => p.id)) + 1 : 1;
+    const newProjectId =
+      this.projects.length > 0
+        ? Math.max(...this.projects.map((p) => p.id)) + 1
+        : 1;
     const newProject: Project = {
       id: newProjectId,
       name: projectName,
       taskCount: 0,
-      icon: 'folder-outline', // Ícono por defecto
-      chartIcon: 'bar-chart-sharp', // Ícono por defecto
+      icon: 'folder-outline',
+      chartIcon: 'bar-chart-sharp',
       members: [],
       extraMembers: 0,
-      color: '#6200ea', // Color por defecto
+      color: '#6200ea',
       tasks: [],
       categories: ['Work'],
-      categoryColors: { 'Work': '#6200ea' },
+      categoryColors: { Work: '#6200ea' },
       tags: [],
     };
     this.projects.push(newProject);
     this.saveProjects();
   }
 
-  // Método implementado para eliminar un proyecto
   deleteProject(projectId: number): void {
-    this.projects = this.projects.filter(project => project.id !== projectId);
+    this.projects = this.projects.filter((project) => project.id !== projectId);
     this.saveProjects();
   }
 
@@ -75,42 +73,74 @@ export class ProjectService {
     if (savedProjects) {
       this.projects = JSON.parse(savedProjects);
     } else {
-      // Proyectos de ejemplo con todos los campos para coincidir con la interfaz
       this.projects = [
         {
           id: 1,
           name: 'Proyecto de Marketing',
-          taskCount: 2, // Se actualiza la cantidad de tareas
+          taskCount: 2,
           icon: 'megaphone',
           chartIcon: 'pulse-sharp',
           members: ['https://placehold.co/100x100/A05151/FFFFFF?text=A'],
           extraMembers: 2,
           color: '#6200ea',
           tasks: [
-            { id: 101, text: 'Planificar campaña en redes sociales', completed: false, category: 'Work', tags: [{ name: 'Urgente', color: '#f44336' }] },
-            { id: 102, text: 'Crear contenido visual', completed: true, category: 'Work', tags: [] }
+            {
+              id: 101,
+              text: 'Planificar campaña en redes sociales',
+              completed: false,
+              category: 'Work',
+              tags: [{ name: 'Urgente', color: '#f44336' }],
+            },
+            {
+              id: 102,
+              text: 'Crear contenido visual',
+              completed: true,
+              category: 'Work',
+              tags: [],
+            },
           ],
           categories: ['Work', 'Personal'],
-          categoryColors: { 'Work': '#6200ea', 'Personal': '#03dac6' },
-          tags: [{ name: 'Urgente', color: '#f44336' }, { name: 'Revisión', color: '#ffc107' }]
+          categoryColors: { Work: '#6200ea', Personal: '#03dac6' },
+          tags: [
+            { name: 'Urgente', color: '#f44336' },
+            { name: 'Revisión', color: '#ffc107' },
+          ],
         },
         {
           id: 2,
           name: 'Proyecto Personal',
-          taskCount: 2, // Se actualiza la cantidad de tareas
+          taskCount: 2,
           icon: 'walk',
           chartIcon: 'bar-chart-sharp',
-          members: ['https://placehold.co/100x100/F58632/FFFFFF?text=B', 'https://placehold.co/100x100/6200EA/FFFFFF?text=C'],
+          members: [
+            'https://placehold.co/100x100/F58632/FFFFFF?text=B',
+            'https://placehold.co/100x100/6200EA/FFFFFF?text=C',
+          ],
           extraMembers: 0,
           color: '#03dac6',
           tasks: [
-            { id: 201, text: 'Comprar víveres', completed: false, category: 'Shopping', tags: [{ name: 'Compras', color: '#e91e63' }] },
-            { id: 202, text: 'Leer el libro de programación', completed: false, category: 'Study', tags: [] }
+            {
+              id: 201,
+              text: 'Comprar víveres',
+              completed: false,
+              category: 'Shopping',
+              tags: [{ name: 'Compras', color: '#e91e63' }],
+            },
+            {
+              id: 202,
+              text: 'Leer el libro de programación',
+              completed: false,
+              category: 'Study',
+              tags: [],
+            },
           ],
           categories: ['Study', 'Shopping'],
-          categoryColors: { 'Study': '#ffc107', 'Shopping': '#e91e63' },
-          tags: [{ name: 'Compras', color: '#e91e63' }, { name: 'Libros', color: '#2196f3' }]
-        }
+          categoryColors: { Study: '#ffc107', Shopping: '#e91e63' },
+          tags: [
+            { name: 'Compras', color: '#e91e63' },
+            { name: 'Libros', color: '#2196f3' },
+          ],
+        },
       ];
       this.saveProjects();
     }
@@ -125,24 +155,27 @@ export class ProjectService {
   }
 
   getProjectById(id: number): Project | undefined {
-    return this.projects.find(p => p.id === id);
+    return this.projects.find((p) => p.id === id);
   }
 
   updateProject(updatedProject: Project): void {
-    const index = this.projects.findIndex(p => p.id === updatedProject.id);
+    const index = this.projects.findIndex((p) => p.id === updatedProject.id);
     if (index !== -1) {
       this.projects[index] = updatedProject;
       this.saveProjects();
     }
   }
 
-  addTaskToProject(projectId: number, taskData: Omit<Task, 'id' | 'completed'>): void {
+  addTaskToProject(
+    projectId: number,
+    taskData: Omit<Task, 'id' | 'completed'>
+  ): void {
     const project = this.getProjectById(projectId);
     if (project) {
       const newId = Date.now();
       const newTask = { ...taskData, id: newId, completed: false };
       project.tasks.push(newTask);
-      project.taskCount = project.tasks.length; // Se actualiza la cuenta de tareas
+      project.taskCount = project.tasks.length;
       this.updateProject(project);
     }
   }
@@ -150,7 +183,7 @@ export class ProjectService {
   toggleTaskCompletion(projectId: number, taskId: number): void {
     const project = this.getProjectById(projectId);
     if (project) {
-      const task = project.tasks.find(t => t.id === taskId);
+      const task = project.tasks.find((t) => t.id === taskId);
       if (task) {
         task.completed = !task.completed;
         this.updateProject(project);
@@ -161,7 +194,7 @@ export class ProjectService {
   updateProjectTask(projectId: number, updatedTask: Task): void {
     const project = this.getProjectById(projectId);
     if (project) {
-      const index = project.tasks.findIndex(t => t.id === updatedTask.id);
+      const index = project.tasks.findIndex((t) => t.id === updatedTask.id);
       if (index !== -1) {
         project.tasks[index] = updatedTask;
         this.updateProject(project);
@@ -172,13 +205,16 @@ export class ProjectService {
   deleteProjectTask(projectId: number, taskId: number): void {
     const project = this.getProjectById(projectId);
     if (project) {
-      project.tasks = project.tasks.filter(task => task.id !== taskId);
-      project.taskCount = project.tasks.length; // Se actualiza la cuenta de tareas
+      project.tasks = project.tasks.filter((task) => task.id !== taskId);
+      project.taskCount = project.tasks.length;
       this.updateProject(project);
     }
   }
 
-  addCategoryToProject(projectId: number, newCategory: { name: string; color: string }): void {
+  addCategoryToProject(
+    projectId: number,
+    newCategory: { name: string; color: string }
+  ): void {
     const project = this.getProjectById(projectId);
     if (project && !project.categories.includes(newCategory.name)) {
       project.categories.push(newCategory.name);
@@ -190,7 +226,9 @@ export class ProjectService {
   deleteCategoryFromProject(projectId: number, categoryName: string): void {
     const project = this.getProjectById(projectId);
     if (project) {
-      project.categories = project.categories.filter(cat => cat !== categoryName);
+      project.categories = project.categories.filter(
+        (cat) => cat !== categoryName
+      );
       delete project.categoryColors[categoryName];
       this.updateProject(project);
     }
@@ -198,7 +236,7 @@ export class ProjectService {
 
   addTagToProject(projectId: number, newTag: Tag): void {
     const project = this.getProjectById(projectId);
-    if (project && !project.tags.some(tag => tag.name === newTag.name)) {
+    if (project && !project.tags.some((tag) => tag.name === newTag.name)) {
       project.tags.push(newTag);
       this.updateProject(project);
     }
@@ -207,10 +245,10 @@ export class ProjectService {
   deleteTagFromProject(projectId: number, tagName: string): void {
     const project = this.getProjectById(projectId);
     if (project) {
-      project.tags = project.tags.filter(tag => tag.name !== tagName);
-      project.tasks.forEach(task => {
+      project.tags = project.tags.filter((tag) => tag.name !== tagName);
+      project.tasks.forEach((task) => {
         if (task.tags) {
-          task.tags = task.tags.filter(tag => tag.name !== tagName);
+          task.tags = task.tags.filter((tag) => tag.name !== tagName);
         }
       });
       this.updateProject(project);
