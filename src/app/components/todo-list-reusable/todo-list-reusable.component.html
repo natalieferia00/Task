@@ -95,7 +95,6 @@
                         <span class="category-dot" [style.background-color]="getCategoryColor(task.category)"></span>
                         {{ task.category }}
                     </div>
-                    <!-- Lógica para mostrar las etiquetas de la tarea -->
                     <div class="task-tags">
                         <span *ngFor="let tag of task.tags" class="tag-badge" [style.background-color]="getTagColor(tag.name)">
                             {{ tag.name }}
