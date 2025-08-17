@@ -19,7 +19,7 @@ import { IonicModule } from "@ionic/angular";
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [IonContent, IonTitle, IonToolbar, IonHeader,
+    imports: [
     CommonModule,
     DashboardHeaderComponent,
     TodoListComponent,
@@ -27,7 +27,9 @@ import { IonicModule } from "@ionic/angular";
     SearchTasksComponent,
     ProgressChartComponent,
     CalendarListComponent,
-    RouterModule, TabsComponent, SidebarComponent, IonicModule],
+    RouterModule, IonicModule,
+   
+],
     templateUrl: './home.page.html',
     styleUrl: './home.page.scss'
 })

@@ -9,8 +9,6 @@ import { IonHeader, IonToolbar } from '@ionic/angular/standalone';
   selector: 'app-register',
   standalone: true,
   imports: [
-    IonToolbar,
-    IonHeader,
     ReactiveFormsModule,
     RouterLink,
     CommonModule,

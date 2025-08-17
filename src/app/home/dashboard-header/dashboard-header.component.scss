@@ -1,59 +1,74 @@
 .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* permite que los elementos bajen de línea en pantallas pequeñas */
+  padding: 1rem 0;
+  width: 100%;
+  box-sizing: border-box; /* asegura que padding no rompa el ancho */
+  gap: 0.5rem; /* espacio entre elementos en wrap */
 }
 
 .user-greeting {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0; /* evita que se comprima demasiado */
+  min-width: 0; /* evita overflow por texto largo */
+}
 
-    .hamburger-icon {
-        font-size: 1.5rem;
-        color: #888;
-        cursor: pointer;
-    }
+.user-greeting .hamburger-icon {
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+}
 
-    .greeting-text {
-        p.greeting {
-            font-weight: 300;
-            color: #888;
-        }
+.user-greeting .greeting-text p.greeting {
+  font-weight: 300;
+  color: #888;
+}
 
-        h1.task-count {
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-    }
+.user-greeting .greeting-text h1.task-count {
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .logo-container {
-    flex-grow: 1;
-    text-align: center;
+  flex-grow: 1;
+  text-align: center;
+  min-width: 100px;
 }
 
 .header-logo {
-    width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+  max-width: 100%; /* se ajusta al contenedor */
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .profile-image-wrapper {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
+  width: clamp(40px, 8vw, 50px); /* ajusta el tamaño en función de la pantalla */
+  height: clamp(40px, 8vw, 50px);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
 
-    .profile-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.profile-image-wrapper .profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+  .dashboard-header {
+    flex-direction: column; /* apila todo vertical */
+    align-items: center;
+  }
+
+  .user-greeting {
+    justify-content: center;
+  }
 }

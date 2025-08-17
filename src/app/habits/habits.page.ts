@@ -22,8 +22,6 @@ interface Habit {
   selector: 'app-habits',
   standalone: true,
   imports: [
-    IonHeader,
-    IonTitle,
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
