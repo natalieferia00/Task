@@ -1,4 +1,3 @@
-
 $primary-color: #a000fe;
 $accent-color: #a000fe;
 $secondary-color: #d183ff;
@@ -35,7 +34,8 @@ body {
     box-shadow: 0 8px 30px $shadow-color;
 }
 
-.task-form, .management-form {
+.task-form,
+.management-form {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -72,7 +72,8 @@ body {
     color: $text-light;
 }
 
-.input-field, .input-field select {
+.input-field,
+.input-field select {
     padding: 0.9rem 1.2rem;
     border: 2px solid $border-color;
     border-radius: 10px;
@@ -95,7 +96,6 @@ body {
 
 .input-field.color-picker {
     width: 50px;
-    height: 50px;
     padding: 0;
     border: 2px solid $border-color;
     border-radius: 10px;
@@ -106,11 +106,19 @@ body {
     appearance: none;
     transition: all 0.3s ease;
 }
-.input-field.color-picker::-webkit-color-swatch-wrapper { padding: 0; }
-.input-field.color-picker::-webkit-color-swatch { border: none; border-radius: 8px; }
+
+.input-field.color-picker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.input-field.color-picker::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
 
 button {
-    background: $primary-color; /* Cambiado a color sólido */
+    background: $primary-color;
+    /* Cambiado a color sólido */
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -126,7 +134,8 @@ button:hover:not([disabled]) {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     filter: brightness(1.1);
-    background-color: $secondary-color; /* Cambio de color en hover para el efecto */
+    background-color: $secondary-color;
+    /* Cambio de color en hover para el efecto */
 }
 
 button:disabled {
@@ -227,11 +236,11 @@ button:disabled {
 
 .color-preview {
     width: 24px;
-    height: 24px;
+
     border-radius: 50%;
     margin-right: 1rem;
     border: 2px solid $border-color;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .task-list {
@@ -242,10 +251,10 @@ button:disabled {
     padding: 0;
     margin-top: 2rem;
 }
+
 .task-checkbox {
     cursor: pointer;
     width: 50px;
-    height: 50px;
     border-radius: 4px;
     border: 2px solid $border-color;
     background-color: #2c2c2c;
@@ -260,7 +269,7 @@ button:disabled {
         background-color: $secondary-color;
         border-color: $secondary-color;
     }
-    
+
     &:checked::after {
         content: '\2713';
         color: #121212;
@@ -283,7 +292,7 @@ button:disabled {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    
+
     &:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
@@ -338,7 +347,6 @@ button:disabled {
 
 .category-dot {
     width: 14px;
-    height: 14px;
     border-radius: 50%;
     margin-right: 0.6rem;
     border: 2px solid $card-bg;
@@ -375,7 +383,7 @@ button:disabled {
         padding: 0.6rem;
         transition: color 0.2s ease, transform 0.2s ease;
         box-shadow: none;
-        
+
         svg {
             color: $text-color;
         }
@@ -385,8 +393,13 @@ button:disabled {
             transform: scale(1.1);
         }
 
-        &.edit-button:hover { color: #ffc107; }
-        &.delete-button:hover { color: #f44336; }
+        &.edit-button:hover {
+            color: #ffc107;
+        }
+
+        &.delete-button:hover {
+            color: #f44336;
+        }
     }
 }
 
@@ -414,7 +427,7 @@ button:disabled {
     &:hover {
         color: $primary-color;
     }
-    
+
     &.active {
         color: $primary-color;
     }
@@ -430,17 +443,19 @@ button:disabled {
         padding: 1.5rem;
         margin: 1rem;
     }
+
     .date-and-time-group {
         grid-template-columns: 1fr;
     }
+
     .task-item {
         flex-direction: column;
         align-items: flex-start;
         padding: 1rem;
     }
+
     .task-actions {
         align-self: flex-end;
         margin-top: 1rem;
     }
 }
-

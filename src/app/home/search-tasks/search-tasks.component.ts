@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FirebaseConfig } from 'src/app/firebase.component';
+import { getValue } from 'firebase/remote-config';
 
 export interface Tag {
   name: string;
@@ -31,8 +33,18 @@ export class SearchTasksComponent implements OnInit {
   allTasks: Task[] = [];
 
   filteredTasks: Task[] = [];
+  showsearchbox = true;
 
-  constructor() {}
+  constructor(public firebaseRemoteConfig: FirebaseConfig) {
+    this.showsearchbox = getValue(
+      firebaseRemoteConfig.getRemoteConfig(),
+      'showsearchbox'
+    ).asBoolean();
+    console.log(getValue(
+      firebaseRemoteConfig.getRemoteConfig(),
+      'showsearchbox'
+    ))
+  }
 
   ngOnInit(): void {
     this.loadAllTasksFromLocalStorage();

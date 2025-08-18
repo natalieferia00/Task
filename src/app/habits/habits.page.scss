@@ -24,7 +24,7 @@
 
 .logo-container .header-logo {
     width: 80px;
-    height: auto;
+
     border-radius: 12px;
 }
 
@@ -70,7 +70,7 @@ h2 {
     color: #ccc;
     font-size: 0.95rem;
 }
-    
+
 .color-selector .color-options {
     display: flex;
     gap: 0.5rem;
@@ -78,7 +78,7 @@ h2 {
 
 .color-selector .color-options button {
     width: 30px;
-    height: 30px;
+
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
@@ -90,12 +90,29 @@ h2 {
     border-color: #fff;
 }
 
-.color-selector .color-options button.color-purple { background-color: #a000fe; }
-.color-selector .color-options button.color-blue { background-color: #2b00ff; }
-.color-selector .color-options button.color-red { background-color: #e53935; }
-.color-selector .color-options button.color-yellow { background-color: #ffc107; }
-.color-selector .color-options button.color-black { background-color: #000; }
-.color-selector .color-options button.color-gray { background-color: #6c757d; }
+.color-selector .color-options button.color-purple {
+    background-color: #a000fe;
+}
+
+.color-selector .color-options button.color-blue {
+    background-color: #2b00ff;
+}
+
+.color-selector .color-options button.color-red {
+    background-color: #e53935;
+}
+
+.color-selector .color-options button.color-yellow {
+    background-color: #ffc107;
+}
+
+.color-selector .color-options button.color-black {
+    background-color: #000;
+}
+
+.color-selector .color-options button.color-gray {
+    background-color: #6c757d;
+}
 
 button[type="submit"] {
     width: 100%;
@@ -199,7 +216,7 @@ button[type="submit"]:hover:not(:disabled) {
     width: 16px;
     height: 16px;
 }
-    
+
 .day-box.missed {
     background-color: #ff0000;
     color: #ffd6d6;
@@ -212,29 +229,72 @@ button[type="submit"]:hover:not(:disabled) {
 }
 
 /* Clases dinámicas para los colores del calendario */
-.color-purple .day-box.completed, .color-purple .progress-fill { background-color: #a000fe; }
-.color-purple input[type="checkbox"] { accent-color: #a000fe; }
+.color-purple .day-box.completed,
+.color-purple .progress-fill {
+    background-color: #a000fe;
+}
 
-.color-blue .day-box.completed, .color-blue .progress-fill { background-color: #2b00ff; }
-.color-blue input[type="checkbox"] { accent-color: #2b00ff; }
+.color-purple input[type="checkbox"] {
+    accent-color: #a000fe;
+}
 
-.color-red .day-box.completed, .color-red .progress-fill { background-color: #e53935; }
-.color-red input[type="checkbox"] { accent-color: #e53935; }
+.color-blue .day-box.completed,
+.color-blue .progress-fill {
+    background-color: #2b00ff;
+}
 
-.color-yellow .day-box.completed, .color-yellow .progress-fill { background-color: #ffc107; }
-.color-yellow input[type="checkbox"] { accent-color: #ffc107; }
-.color-yellow .day-box.completed { color: #333; }
+.color-blue input[type="checkbox"] {
+    accent-color: #2b00ff;
+}
 
-.color-black .day-box.completed, .color-black .progress-fill { background-color: #000; }
-.color-black input[type="checkbox"] { accent-color: #000; }
-.color-black .day-box.completed { color: #fff; }
+.color-red .day-box.completed,
+.color-red .progress-fill {
+    background-color: #e53935;
+}
 
-.color-gray .day-box.completed, .color-gray .progress-fill { background-color: #6c757d; }
-.color-gray input[type="checkbox"] { accent-color: #6c757d; }
+.color-red input[type="checkbox"] {
+    accent-color: #e53935;
+}
+
+.color-yellow .day-box.completed,
+.color-yellow .progress-fill {
+    background-color: #ffc107;
+}
+
+.color-yellow input[type="checkbox"] {
+    accent-color: #ffc107;
+}
+
+.color-yellow .day-box.completed {
+    color: #333;
+}
+
+.color-black .day-box.completed,
+.color-black .progress-fill {
+    background-color: #000;
+}
+
+.color-black input[type="checkbox"] {
+    accent-color: #000;
+}
+
+.color-black .day-box.completed {
+    color: #fff;
+}
+
+.color-gray .day-box.completed,
+.color-gray .progress-fill {
+    background-color: #6c757d;
+}
+
+.color-gray input[type="checkbox"] {
+    accent-color: #6c757d;
+}
 
 
 
-.completion-message, .progress-message {
+.completion-message,
+.progress-message {
     text-align: center;
     font-size: 0.9rem;
     font-weight: 500;
@@ -255,8 +315,15 @@ button[type="submit"]:hover:not(:disabled) {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .login-link {
@@ -264,7 +331,7 @@ button[type="submit"]:hover:not(:disabled) {
     margin-top: 2rem;
     color: #aaa;
 }
-    
+
 .login-link a {
     color: #a000fe;
     text-decoration: none;

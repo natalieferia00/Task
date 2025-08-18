@@ -38,14 +38,10 @@
   }
 }
 .contenedor-padre {
-    /* Define el contenedor como un flex container */
     display: flex;
-    /* Centra los elementos horizontalmente */
     justify-content: center;
-    /* Centra los elementos verticalmente (si es necesario) */
     align-items: center;
-    /* Asegúrate de que tenga un alto para centrar verticalmente */
-    height: 100vh; /* Ejemplo: 100% de la altura del viewport */
+    height: 100vh; 
 }
 
 

@@ -1,23 +1,15 @@
-/*
-  ==========================================
-  Globales y utilidades
-  ==========================================
-*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-/* Reseteo básico de CSS */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Configuración de fuentes y scroll. */
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
-  height: 100%;
 
 }
 
@@ -26,18 +18,13 @@ body {
   width: 100%;
   font-family: 'Roboto', sans-serif;
   background-color: #000;
-  color: #fff;
-  height: 100%;
   min-height: 500vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  color: #fff;
 }
 
-/* Esencial para el scroll en Ionic */
+
 ion-content {
   --ion-background-color: #000;
-  /* CAMBIO CLAVE: Permite que el contenido del ion-content se desplace */
-  --ion-safe-area-bottom: 0px; 
+  --ion-safe-area-bottom: 0px;
   --ion-safe-area-top: 0px;
 }
-
